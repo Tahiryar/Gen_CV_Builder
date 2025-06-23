@@ -29,3 +29,13 @@ Experience: {row['Experience']}"""
     response = model.generate_content(prompt)
     summary = response.text.strip()
     print(f" Summary for {row['Name']}:\n{summary}")
+
+    summaries.append(summary)
+
+
+    df["Summary"] = summaries
+
+#  Save to CSV
+csv_file = "cv_summary_with_gemini.csv"
+df.to_csv(csv_file, index=False)
+print(f"\n CSV saved at: {os.path.abspath(csv_file)}")
